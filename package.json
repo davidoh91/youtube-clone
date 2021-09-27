@@ -7,10 +7,13 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5"
+    "@babel/core": "^7.15.5",
+    "@babel/node": "^7.15.4",
+    "@babel/preset-env": "^7.15.6",
+    "nodemon": "^2.0.13"
   },
   "scripts": {
-    "test": "npm index.js"
+    "dev": "babel-node index.js"
   },
   "repository": {
     "type": "git",
