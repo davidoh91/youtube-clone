@@ -38,7 +38,10 @@ app.listen(PORT, handleListening);
 //     next();
 // };
 const logger = (req, res, next) => {
-    console.log('${} ${req.url}'.format(req.method, req.url));
+    console.log('***Logger Info***');
+    console.log('Request Method: ', req.method, '\nRequest URL: ', req.url);
+    console.log('***Logger Info***');
+    next();
 };
 const handleHome = (req, res, next) => {
     return res.send("<h1>This handles / Home</h1>");
@@ -59,8 +62,11 @@ const handleLogin = (req, res) => {
     return res.send({message: "Login here."})
 };
 
-// app.get("/", gossipMiddleware,handleHome);
-app.get("/", logger, handleHome);
+//app.use(<insert a function here>) -> the inserted function is globalized for app.get()
+app.use(logger);
+
+// app.get("/", logger, handleHome);
+app.get("/", handleHome);
 app.get("/req", handleReq);
 app.get("/res", handleRes);
 app.get("/login", handleLogin);
