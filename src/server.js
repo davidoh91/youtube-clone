@@ -17,8 +17,8 @@ import { send } from "process";
 
 console.log("server.js has started");
 const app = express();
-const PORT = 2500;
-const STRING = 'server listening on http://localhost:2500'
+const PORT = 25000;
+const STRING = 'server listening on http://localhost:25000'
 
 const handleListening = () => 
     console.log(STRING);
