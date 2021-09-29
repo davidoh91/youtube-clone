@@ -32,8 +32,13 @@ app.listen(PORT, handleListening);
 
 //handling request coming into '/' and returning the response back  
 
-const handleHome = (req, res) => {
-    return res.send("This handles / Home");
+//middlewares are functions that sends the job to the next function without response
+const gossipMiddleware = (req, res, next) => {
+    console.log("The middleware says: the user is connecting to / Home");
+    next();
+};
+const handleHome = (req, res, next) => {
+    return res.send("<h1>This handles / Home</h1>");
 };
 const handleReq = (req, res) => {
     console.log(req);
@@ -47,10 +52,11 @@ const handleRes = (req, res) => {
     return res.send("This sends a response back");
 };
 const handleLogin = (req, res) => {
-    return res.send("This handles login!")
+    // return res.send({"This handles login!");
+    return res.send({message: "Login here."})
 };
 
-app.get("/", handleHome);
+app.get("/", gossipMiddleware,handleHome);
 app.get("/req", handleReq);
 app.get("/res", handleRes);
 app.get("/login", handleLogin);
