@@ -65,6 +65,7 @@ const handleLogin = (req, res) => {
 //app.use(<insert a function here>) -> the inserted function is globalized for app.get()
 app.use(logger);
 
+//It's all about creating a route and handling the route!
 // app.get("/", logger, handleHome);
 app.get("/", handleHome);
 app.get("/req", handleReq);
