@@ -37,10 +37,16 @@ app.listen(PORT, handleListening);
 //     console.log("The middleware says: the user is connecting to / Home");
 //     next();
 // };
-const logger = (req, res, next) => {
-    console.log('***Logger Info***');
-    console.log('Request Method: ', req.method, '\nRequest URL: ', req.url);
-    console.log('***Logger Info***');
+const methodLogger = (req, res, next) => {
+    console.log('\n***methodLogger Info***');
+    console.log('Request Method: ', req.method);
+    console.log('***methodLogger Info***');
+    next();
+};
+const routerLogger = (req, res, next) => {
+    console.log('\n***routerLogger Info***');
+    console.log('Path: ', req.path);
+    console.log('***routerLogger Info***');
     next();
 };
 const handleHome = (req, res, next) => {
@@ -63,9 +69,10 @@ const handleLogin = (req, res) => {
 };
 
 //app.use(<insert a function here>) -> the inserted function is globalized for app.get()
-app.use(logger);
+app.use(methodLogger, routerLogger);
 
-//It's all about creating a route and handling the route!
+//0) It's all about creating a route and handling the route!
+//1) All the controller functions are middlewares as long as they don't return the request with 'res" function
 // app.get("/", logger, handleHome);
 app.get("/", handleHome);
 app.get("/req", handleReq);
