@@ -8,11 +8,18 @@
 //   },
 //+ Nodemon -> 'npm install nodemon --save-dev
 //              and simply run 'npm run dev'
+//+ add morgan module, the middleware by 'npm i morgan'
 
 
 import express from "express";
 // const express = require('express');
 // const app = express();
+import morgan from "morgan";
+
+
+//* must surround template literals (interpolation) with backticks `
+const Name = 'David';
+console.log(`"Hi my name is ${Name}"`);
 
 console.log("server.js has started");
 const app = express();
@@ -48,6 +55,10 @@ const routerLogger = (req, res, next) => {
     console.log('***routerLogger Info***');
     next();
 };
+//or instead of manually writing loggers, use morgan module
+const logger = morgan('dev');
+// const logger = morgan('combined');
+// const logger = morgan('common');
 const handleHome = (req, res, next) => {
     return res.send("<h1>This handles / Home</h1>");
 };
@@ -68,8 +79,8 @@ const handleLogin = (req, res) => {
 };
 
 //app.use(<insert a function here>) -> the inserted function is globalized for app.get()
-app.use(methodLogger, routerLogger);
-
+// app.use(methodLogger, routerLogger);
+app.use(logger);
 //0) It's all about creating a route and handling the route!
 //1) All the controller functions are middlewares as long as they don't return the request with 'res" function
 // app.get("/", logger, handleHome);
@@ -77,4 +88,3 @@ app.get("/", handleHome);
 app.get("/req", handleReq);
 app.get("/res", handleRes);
 app.get("/login", handleLogin);
-
