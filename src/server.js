@@ -17,14 +17,15 @@ import express from "express";
 import morgan from "morgan";
 
 
+
 //* must surround template literals (interpolation) with backticks `
 const Name = 'David';
 console.log(`"Hi my name is ${Name}"`);
 
 console.log("server.js has started");
 const app = express();
-const PORT = 25000;
-const STRING = 'server listening on http://localhost:25000'
+const PORT = Math.floor(Math.random() * 50000);
+const STRING = `"server listening on http://localhost:${PORT}"`;
 
 const handleListening = () => 
     console.log(STRING);
@@ -43,6 +44,11 @@ app.listen(PORT, handleListening);
 //     console.log("The middleware says: the user is connecting to / Home");
 //     next();
 // };
+// ===============================Global Middlewares(Routers) & Handlers================================
+//0) It's all about creating a route and handling the route!
+//1) All the controller functions are middlewares as long as they don't return the request with 'res" function
+// app.get("/", logger, handleHome);
+/*
 const methodLogger = (req, res, next) => {
     console.log('\n***methodLogger Info***');
     console.log('Request Method: ', req.method);
@@ -55,10 +61,6 @@ const routerLogger = (req, res, next) => {
     console.log('***routerLogger Info***');
     next();
 };
-//or instead of manually writing loggers, use morgan module
-const logger = morgan('dev');
-// const logger = morgan('combined');
-// const logger = morgan('common');
 const handleHome = (req, res, next) => {
     return res.send("<h1>This handles / Home</h1>");
 };
@@ -77,14 +79,43 @@ const handleLogin = (req, res) => {
     // return res.send({"This handles login!");
     return res.send({message: "Login here."})
 };
-
-//app.use(<insert a function here>) -> the inserted function is globalized for app.get()
-// app.use(methodLogger, routerLogger);
-app.use(logger);
-//0) It's all about creating a route and handling the route!
-//1) All the controller functions are middlewares as long as they don't return the request with 'res" function
-// app.get("/", logger, handleHome);
+app.use(methodLogger, routerLogger);
 app.get("/", handleHome);
 app.get("/req", handleReq);
 app.get("/res", handleRes);
 app.get("/login", handleLogin);
+*/
+
+
+// ===========================Logger 
+//instead of manually writing loggers, use morgan module
+const logger = morgan('dev');
+app.use(logger);
+// const logger = morgan('combined');
+// const logger = morgan('common');
+/* 
+express.Router() can shorten urls by routing the requests for subdirectories
+So, use express.Router() to 'hide' the parent directories and route specific request traffics
+*/
+const globalRouter = express.Router();
+const handleHome = (req, res) => res.send("This is 'Home'");
+globalRouter.get("/", handleHome);
+
+const userRouter = express.Router();
+const handleEditUser = (req, res) => res.send("This is 'Edit User'");
+userRouter.get("/edit", handleEditUser);
+
+
+const handleWatchVideo = (req, res) => res.send("Watch 'Video'");
+const videoRouter = express.Router();
+videoRouter.get("/watch", handleWatchVideo);
+
+// =================================Application===========================================
+//app.use(<insert a function here>) -> the inserted function is globalized for app.get()
+app.use('/', globalRouter);
+app.use('/videos', userRouter);
+app.use('/users', userRouter);
+
+
+
+
