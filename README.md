@@ -7,7 +7,7 @@
 /search -> Search
 # user router
 /edit/user -> Edit user
-/users/delete -> Delete user
+/users/remove -> Delete user
 # video router
 /videos/watch -> Watch Video
 /videos/edit -> Edit Video
