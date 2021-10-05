@@ -1,5 +1,9 @@
-export const trending = (req, res) => res.send("This is Home Page Videos");
-export const see = (req, res) => {
+export const trending = (req, res) => {
+    // Instead of sending html like this... use "Pug"
+    res.send('<!DOCTYPE html><html><body><h1>This is Home Page</h1><p>Test paragraph.</p></body></html>');
+    // res.send("This is Home Page Videos");
+}
+    export const see = (req, res) => {
     //req.params holds the parameters on the web request
     return res.send(`Watch Video #${req.params.id}`);
 }
