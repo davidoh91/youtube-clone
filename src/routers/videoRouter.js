@@ -16,9 +16,14 @@ const videoRouter = express.Router();
 // const handleEdit = (req, res) => {
 //     res.send("This is Edit Video");
 // }
+
+/*
+Here, : indicates id is a parameter
+(\\d+) is the regular expression that accepts only digits for ID
+*/
+videoRouter.get('/:id(\\d+)', see);  
+videoRouter.get("/:id(\\d+)/edit", edit);
+videoRouter.get("/:id(\\d+)/delete", deleteVideo);
 videoRouter.get('/upload', upload)
-videoRouter.get('/:id', see);
-videoRouter.get("/:id/edit", edit);
-videoRouter.get("/:id/delete", deleteVideo);
 
 export default videoRouter;
