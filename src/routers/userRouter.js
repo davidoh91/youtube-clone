@@ -5,11 +5,13 @@ So, use express.Router() to 'hide' the parent directories and route specific req
 */
 
 import express from "express";
-import { edit, remove } from "../controllers/userController";
+import { logout, edit, remove, see } from "../controllers/userController";
 
 const userRouter = express.Router();
 
+userRouter.get('/logout', logout);
 userRouter.get('/edit', edit);
 userRouter.get('/remove', remove);
+userRouter.get('/:id', see);
 
 export default userRouter;
