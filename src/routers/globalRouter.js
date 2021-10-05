@@ -11,8 +11,6 @@ import { trending, search } from "../controllers/videoController";
 
 const globalRouter = express.Router();
 
-const handleHome = (req, res) => res.send('This is Home');
-
 globalRouter.get('/', trending);
 globalRouter.get('/join', join);
 globalRouter.get('/login', login);
