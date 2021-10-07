@@ -5,7 +5,7 @@ So, use express.Router() to 'hide' the parent directories and route specific req
 default export allows change of exported function or constants, but individual const export the actual name matters
 */
 
-import express from "express";
+import express, { application } from "express";
 import { join, login } from "../controllers/userController";
 import { trending, search } from "../controllers/videoController";
 

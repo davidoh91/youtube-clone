@@ -1,0 +1,10 @@
+// on other templates, extend this base template file
+html(lang="ko")
+    head
+        //make up a space to fill up head title
+        block head
+    body
+        //insert a block (a window to place contents after extending base.pug)
+        block content
+    //simply import footer.pug from partials directory
+    include partials/footer.pug

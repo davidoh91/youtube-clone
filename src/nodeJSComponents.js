@@ -9,6 +9,16 @@
 //+ Nodemon -> 'npm install nodemon --save-dev
 //              and simply run 'npm run dev'
 //+ add morgan module, the middleware by 'npm i morgan'
+//
+//+Instead of sending html like this...
+//res.send('<!DOCTYPE html><html><body><h1>This is Home Page</h1><p>Test paragraph.</p></body></html>');
+// https://expressjs.com/en/guide/using-template-engines.html
+//1.pip install pug
+//2.designate pug as node.js express's view engine
+//3.create pug view file  >> by 'app.set("view engine", "pug")
+//Pug helps create view (html templates)
+
+
 
 
 import express from "express";

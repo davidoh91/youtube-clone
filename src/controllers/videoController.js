@@ -1,12 +1,21 @@
+
+/*
 export const trending = (req, res) => {
-    // Instead of sending html like this... use "Pug"
+    res.send("This is Home Page Videos");
+    Instead of sending html like this... use "Pug"
     res.send('<!DOCTYPE html><html><body><h1>This is Home Page</h1><p>Test paragraph.</p></body></html>');
-    // res.send("This is Home Page Videos");
+    res.render("home"); //use res.render() and insert 'home' pug template in the views directory
 }
-    export const see = (req, res) => {
+*/
+export const trending = (req, res) => res.render("home");
+/*
+export const see = (req, res) => {
     //req.params holds the parameters on the web request
     return res.send(`Watch Video #${req.params.id}`);
+    
 }
+*/
+export const see = (req, res) => res.render('watch');
 export const edit = (req, res) => {
     return res.send(`Edit Video #${req.params.id}`);
 }
