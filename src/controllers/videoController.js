@@ -1,3 +1,7 @@
+const fakeUser = {
+    username: "David",
+    loggedIn: true,
+};
 
 /*
 export const trending = (req, res) => {
@@ -7,7 +11,7 @@ export const trending = (req, res) => {
     res.render("home"); //use res.render() and insert 'home' pug template in the views directory
 }
 */
-export const trending = (req, res) => res.render("home");
+export const trending = (req, res) => res.render("home", { pageTitle: "Home",  fakeUser });
 /*
 export const see = (req, res) => {
     //req.params holds the parameters on the web request

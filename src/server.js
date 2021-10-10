@@ -7,7 +7,8 @@ import userRouter from "./routers/userRouter";
 console.log(process.cwd());
 console.log("server.js has started");
 const app = express();
-const PORT = Math.floor(Math.random() * 50000);
+// const PORT = Math.floor(Math.random() * 50000);
+const PORT = 52222;
 const STRING = `"server listening on http://localhost:${PORT}"`;
 
 const handleListening = () => console.log(STRING);
