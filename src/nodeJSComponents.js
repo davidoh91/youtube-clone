@@ -17,6 +17,8 @@
 //2.designate pug as node.js express's view engine
 //3.create pug view file  >> by 'app.set("view engine", "pug")
 //Pug helps create view (html templates)
+//
+//+Download "MVP styles" to apply minimal/basic styles to your html automatcially
 
 
 

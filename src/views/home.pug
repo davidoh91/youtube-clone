@@ -1,6 +1,10 @@
-extends base.pug
+extends base
+include mixins/video
 
 block content
-    h1 Home
-    input(placeholder="What's your name?")
-    button send
+    h2 Welcome, here are the trending videos
+    each vid in videos
+        //+ << imports the function from mixin template
+        +video(vid)
+    else
+        li Sorry, nothing was found

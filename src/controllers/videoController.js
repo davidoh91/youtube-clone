@@ -11,7 +11,35 @@ export const trending = (req, res) => {
     res.render("home"); //use res.render() and insert 'home' pug template in the views directory
 }
 */
-export const trending = (req, res) => res.render("home", { pageTitle: "Home",  fakeUser });
+export const trending = (req, res) => {
+    const videos = [
+        {
+            title: "First Video",
+            rating: 5,
+            comments: 255,
+            createdAt: "5 minutes ago",
+            views: 51000,
+            id: 1,
+        },
+        {
+            title: "Second Video",
+            rating: 3,
+            comments: 15,
+            createdAt: "4 minutes ago",
+            views: 8000,
+            id: 2,
+        },
+        {
+            title: "Third Video",
+            rating: 4,
+            comments: 98,
+            createdAt: "3 minutes ago",
+            views: 16000,
+            id: 3,
+        },
+    ];
+    res.render("home", { pageTitle: "Home",  videos });
+}
 /*
 export const see = (req, res) => {
     //req.params holds the parameters on the web request
