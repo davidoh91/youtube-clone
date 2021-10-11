@@ -21,9 +21,8 @@ const videoRouter = express.Router();
 Here, : indicates id is a parameter
 (\\d+) is the regular expression that accepts only digits for ID
 */
-videoRouter.get('/:id(\\d+)', watch);  
-videoRouter.get("/:id(\\d+)/edit", getEdit);
-videoRouter.post("/:id(\\d+)/edit", postEdit)
+videoRouter.get('/:id(\\d+)', watch);
+videoRouter.route('/:id(\\d+)/edit').get(getEdit).post(postEdit);
 
 
 export default videoRouter;

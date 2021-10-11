@@ -59,7 +59,10 @@ export const getEdit = (req, res) => {
     return res.render("edit", {pageTitle:`Editing ${video.title}`, video:video });
 };
 export const postEdit = (req, res) => {
-    
+    const id = req.params.id;
+    const { title } = req.body;
+    videos[id-1].title = title; // this is how you update the video from postEdit request
+    return res.redirect(`/videos/${id}`);
 };
 
 //export default trending;  << instead of default export, export each constants
