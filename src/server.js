@@ -26,7 +26,7 @@ app.set('view engine', 'pug'); // set the view template engine as pug
 app.set('views', process.cwd() + '/src/views'); // set the correct path for views directory from the point of package.json file
 
 app.use(logger);
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true})); // this middleware, express.urlencoded(), enables us to use the POST method when sending form
 app.use('/', globalRouter);
 app.use('/videos', videoRouter);
 app.use('/users', userRouter);
