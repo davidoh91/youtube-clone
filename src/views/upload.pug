@@ -2,6 +2,6 @@ extends base.pug
 
 block content
     //- h3 This is Upload page
-    form(method="POST")
-        input(type="text", placeholder="Title", required)
+    form(method="POST", action="/videos/upload")
+        input(name="title", type="text", placeholder="Title", required)
         input(type="submit", value="Upload Video") 
