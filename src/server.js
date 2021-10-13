@@ -1,14 +1,17 @@
+import "./db";
+import "./models/Video"
 import express from "express";
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
+import { Mongoose } from "mongoose";
 
 console.log(process.cwd());
 console.log("server.js has started");
 const app = express();
 // const PORT = Math.floor(Math.random() * 50000);
-const PORT = 52222;
+const PORT = 64000;
 const STRING = `"server listening on http://localhost:${PORT}"`;
 
 const handleListening = () => console.log(STRING);

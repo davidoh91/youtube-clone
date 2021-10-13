@@ -19,6 +19,10 @@
 //Pug helps create view (html templates)
 //
 //+Download "MVP styles" to apply minimal/basic styles to your html automatcially
+// 
+//+Install MongoDB and then install Mongoose to allow Node.js to query directly to MongoDB
+// 
+//+
 
 
 
