@@ -7,13 +7,12 @@ default export allows change of exported function or constants, but individual c
 
 import express, { application } from "express";
 import { join, login, logout } from "../controllers/userController";
-import { trending, search } from "../controllers/videoController";
+import { home, search } from "../controllers/videoController";
 
 const globalRouter = express.Router();
 
-globalRouter.get('/', trending);
+globalRouter.get('/', home);
 globalRouter.get('/join', join);
 globalRouter.get('/login', login);
-globalRouter.get('/logout', logout)
 
 export default globalRouter;

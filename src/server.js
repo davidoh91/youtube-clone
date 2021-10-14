@@ -1,5 +1,3 @@
-import "./db";
-import "./models/Video"
 import express from "express";
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
@@ -11,10 +9,7 @@ console.log(process.cwd());
 console.log("server.js has started");
 const app = express();
 // const PORT = Math.floor(Math.random() * 50000);
-const PORT = 64000;
-const STRING = `"server listening on http://localhost:${PORT}"`;
 
-const handleListening = () => console.log(STRING);
 const logger = morgan('dev'); //'combined'|'common'
 
 /* 
@@ -24,7 +19,7 @@ So, use express.Router() to 'hide' the parent directories and route specific req
 
 // =================================Application===========================================
 //app.use(<insert a function here>) -> the inserted function is globalized for app.get()
-app.listen(PORT, handleListening);
+
 app.set('view engine', 'pug'); // set the view template engine as pug
 app.set('views', process.cwd() + '/src/views'); // set the correct path for views directory from the point of package.json file
 
@@ -34,6 +29,6 @@ app.use('/', globalRouter);
 app.use('/videos', videoRouter);
 app.use('/users', userRouter);
 
-
+export default app;
 
 
