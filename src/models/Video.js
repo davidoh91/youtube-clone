@@ -11,6 +11,19 @@ const videoSchema = new mongoose.Schema({
     },
 });
 
+// videoSchema.pre("save", async function () {
+//     console.log("I am the schema middleware. We are about to save:", this);
+//     this.hashtags = this.hashtags[0]
+//         .split(',')
+//         .map((word) => (word.startsWith("#") ? word : `#${word}`));
+// });
+
+videoSchema.static("formatHashtags", function (hashtags){
+    return hashtags
+        .split(",")
+        .map((word) => (word.startsWith("#") ? word : `#${word}`));
+});
+
 // Create the Video model using the schema set above
 const Video = mongoose.model('Video', videoSchema);
 

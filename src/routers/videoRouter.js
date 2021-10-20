@@ -4,7 +4,7 @@ So, use express.Router() to 'hide' the parent directories and route specific req
 */
 
 import express from "express";
-import { watch, getUpload, postUpload, getEdit, postEdit } from "../controllers/videoController";
+import { watch, getUpload, postUpload, getEdit, postEdit, deleteVideo } from "../controllers/videoController";
 
 const videoRouter = express.Router();
 
@@ -23,6 +23,7 @@ Here, : indicates id is a parameter
 */
 videoRouter.get('/:id([0-9a-f]{24})', watch);
 videoRouter.route('/:id([0-9a-f]{24})/edit').get(getEdit).post(postEdit);
+videoRouter.route("/:id([0-9a-f]{24})/delete").get(deleteVideo);
 videoRouter.route("/upload").get(getUpload).post(postUpload);
 
 export default videoRouter;

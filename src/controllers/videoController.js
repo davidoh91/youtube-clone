@@ -4,7 +4,7 @@ import Video from "../models/Video";
 export const home = async(req, res) => {
     try{
         console.log("db video search start");
-        const videos = await Video.find({});
+        const videos = await Video.find({}).sort({createdAt: "desc"});
         console.log("the videos from MongoDB: ", videos);
         console.log("db video search finished");
         return res.render("home", { pageTitle: "Home", videos: videos });
@@ -39,9 +39,7 @@ export const postEdit = async (req, res) => {
     await Video.findByIdAndUpdate(id, { 
         title, 
         description, 
-        hashtags: hashtags
-            .split(",")
-            .map((word) => (word.startsWith("#") ? word : `#${word}`)),
+        hashtags: Video.formatHashtags(hashtags),
     });
     return res.redirect(`/videos/${id}`);
 };
@@ -54,10 +52,8 @@ export const postUpload = async(req, res) => {
         await Video.create({
             title,
             description,
-            createdAt: Date.now(),
-            hashtags: hashtags
-                .split(",")
-                .map((word) => (word.startsWith("#") ? word : '#${word}')),
+            // createdAt: Date.now(),
+            hashtags: formatHashtags,
         });
         return res.redirect("/");
     } catch (error) {
@@ -66,4 +62,16 @@ export const postUpload = async(req, res) => {
             errorMessage: error.message,
         })
     };
+};
+export const deleteVideo = async (req, res) => {
+    const { id } = req.params;
+    await Video.findByIdAndDelete(id);
+    return res.redirect("/");
+};
+export const search = (req, res) => {
+    const keyword = req.query.keyword;
+    if (keyword) {
+        
+    }
+    return res.render("search", { pageTitle: "Search" });
 };
