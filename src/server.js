@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import globalRouter from "./routers/globalRouter";
+import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
 import { Mongoose } from "mongoose";
@@ -25,7 +25,7 @@ app.set('views', process.cwd() + '/src/views'); // set the correct path for view
 
 app.use(logger);
 app.use(express.urlencoded({ extended: true})); // this middleware, express.urlencoded(), enables us to use the POST method when sending form
-app.use('/', globalRouter);
+app.use('/', rootRouter);
 app.use('/videos', videoRouter);
 app.use('/users', userRouter);
 

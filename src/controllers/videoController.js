@@ -7,6 +7,7 @@ export const home = async(req, res) => {
         const videos = await Video.find({}).sort({createdAt: "desc"});
         console.log("the videos from MongoDB: ", videos);
         console.log("db video search finished");
+        console.log(videos)
         return res.render("home", { pageTitle: "Home", videos: videos });
     } catch {
         return res.render("Server Error");
@@ -52,8 +53,7 @@ export const postUpload = async(req, res) => {
         await Video.create({
             title,
             description,
-            // createdAt: Date.now(),
-            hashtags: formatHashtags,
+            hashtags: Video.formatHashtags(hashtags),
         });
         return res.redirect("/");
     } catch (error) {
@@ -68,10 +68,17 @@ export const deleteVideo = async (req, res) => {
     await Video.findByIdAndDelete(id);
     return res.redirect("/");
 };
-export const search = (req, res) => {
+export const search = async (req, res) => {
+    console.log(req.query)
     const keyword = req.query.keyword;
+    let videos = [];
     if (keyword) {
-        
+        videos = await Video.find({
+            title: {
+                $regex: new RegExp(`${keyword}$`, "i"),
+            }
+        });
     }
-    return res.render("search", { pageTitle: "Search" });
+    console.log(videos);
+    return res.render("search", { pageTitle: "Search", videos });
 };

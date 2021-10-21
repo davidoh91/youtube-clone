@@ -6,14 +6,14 @@ default export allows change of exported function or constants, but individual c
 */
 
 import express, { application } from "express";
-import { join, login, logout } from "../controllers/userController";
+import { getJoin, postJoin, login, logout } from "../controllers/userController";
 import { home, search } from "../controllers/videoController";
 
-const globalRouter = express.Router();
+const rootRouter = express.Router();
 
-globalRouter.get('/', home);
-globalRouter.get('/join', join);
-globalRouter.get('/login', login);
-globalRouter.get("/search", search);
+rootRouter.get('/', home);
+rootRouter.route('/join').get(getJoin).post(postJoin);
+rootRouter.get('/login', login);
+rootRouter.get("/search", search);
 
-export default globalRouter;
+export default rootRouter;
