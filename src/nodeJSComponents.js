@@ -22,7 +22,7 @@
 // 
 //+Install MongoDB and then install Mongoose to allow Node.js to query directly to MongoDB
 // 
-//+
+//+npm i bcrypt  << this allows the hashing of user passwords before being stored in DB
 
 
 
