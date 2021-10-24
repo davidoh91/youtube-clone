@@ -8,19 +8,18 @@ export const postJoin = async (req, res) => {
     const pageTitle = "Join";
     const {name, username, email, password, password2, location } = req.body;
     if(password !== password2){
-        return res.render("join", {
+        return res.status(400).render("join", {
             pageTitle: pageTitle,
             errorMessage: "Confirm Password Again"
         });
     }
     const exists = await User.exists({$or: [{ username:username, email:email }]});
     if(exists){
-        return res.render("join", { 
+        return res.status(400).render("join", { 
             pageTitle: pageTitle, 
             errorMessage: "This username/email is already taken"
         });
     }
-    const emailExists = await User.exists({ email: email });
     await User.create({
         name, 
         username, 
