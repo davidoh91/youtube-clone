@@ -1,9 +1,9 @@
 import express from "express";
 import morgan from "morgan";
+import session from "express-session";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
-import { Mongoose } from "mongoose";
 
 console.log(process.cwd());
 console.log("server.js has started");
@@ -22,9 +22,24 @@ So, use express.Router() to 'hide' the parent directories and route specific req
 
 app.set('view engine', 'pug'); // set the view template engine as pug
 app.set('views', process.cwd() + '/src/views'); // set the correct path for views directory from the point of package.json file
-
 app.use(logger);
 app.use(express.urlencoded({ extended: true})); // this middleware, express.urlencoded(), enables us to use the POST method when sending form
+
+app.use(
+    session({
+        secret: "cookie",
+        resave: true,
+        saveUninitialized: true,
+    })
+);
+
+app.use((req, res, next) => {
+    req.sessionStore.all((error, sessions) => {
+        console.log(sessions);
+        next();
+    }
+)});
+
 app.use('/', rootRouter);
 app.use('/videos', videoRouter);
 app.use('/users', userRouter);
