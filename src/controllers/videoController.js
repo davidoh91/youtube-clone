@@ -2,7 +2,7 @@ import Video from "../models/Video";
 
 // using async & await in function
 export const home = async(req, res) => {
-    try{
+    try {
         console.log("db video search start");
         const videos = await Video.find({}).sort({createdAt: "desc"});
         console.log("the videos from MongoDB: ", videos);
