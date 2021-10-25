@@ -20,6 +20,7 @@ export const postJoin = async (req, res) => {
             errorMessage: "This username/email is already taken"
         });
     }
+    
     await User.create({
         name, 
         username, 
