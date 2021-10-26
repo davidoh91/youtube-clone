@@ -4,6 +4,7 @@ import session from "express-session";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
+import { localsMiddleware } from "./middlewares";
 
 console.log(process.cwd());
 console.log("server.js has started");
@@ -34,12 +35,14 @@ app.use(
 );
 
 app.use((req, res, next) => {
+    console.log(res);
     req.sessionStore.all((error, sessions) => {
-        console.log(sessions);
+        console.log("session info:", sessions);
         next();
-    }
-)});
+    });
+});
 
+app.use(localsMiddleware);
 app.use('/', rootRouter);
 app.use('/videos', videoRouter);
 app.use('/users', userRouter);
