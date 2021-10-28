@@ -1,3 +1,4 @@
+// console.log("*******************\n", process.env.COOKIE_SECRET, "\n*******************\n", process.env.DB_URL);
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
@@ -29,13 +30,13 @@ app.use(logger);
 app.use(express.urlencoded({ extended: true})); // this middleware, express.urlencoded(), enables us to use the POST method when sending form
 app.use(
     session({
-        secret: "cookie",
+        secret: process.env.COOKIE_SECRET,
         resave: true,
         saveUninitialized: true,
         // cookie: {
         //     maxAge: 20000,
         // }
-        store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/youtube' }),
+        store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
     })
 );
 app.use(localsMiddleware);
