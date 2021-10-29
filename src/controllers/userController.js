@@ -115,15 +115,35 @@ export const finishGithubLogin = async (req, res) => {
                 },
             })
         ).json();
-        console.log("*********fetched emailData via Github API:\n", emailData);
-        if (!email) {
+        const emailObj = emailData.find(
+            (email) => email.primary === true && email.verified === true
+        );
+        console.log("*********fetched emailData via Github API:\n", emailObj);
+        if (!emailObj) {
             return res.redirect("/login");
         }
+        let user = await User.findOne({ email: emailObj.email });
+        if(!user){
+            user = await User.create({
+                name: userData.name,
+                avatarUrl: userData.avatar_url,
+                username: userData.login,
+                email: emailObj.email,
+                password: "",
+                socialOnly: true,
+                location: userData.location,
+            });
+        }
+        req.session.loggedIn = true;
+        req.session.user = user;
+        return res.redirect("/");
     } else {
         return res.redirect("/login");
     }
 };
+export const logout = (req, res) => {
+    req.session.destroy();
+    return res.redirect("/");
+};
 export const edit = (req, res) => res.send("This is Edit User");
-export const remove = (req, res) => res.send("This is Remove User");
-export const logout = (req, res) => res.render("logout");
 export const see = (req, res) => res.send("This is See User");

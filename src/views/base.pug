@@ -13,7 +13,7 @@ html(lang="ko")
                         a(href="/") Home
                     if locals.loggedIn
                         li 
-                            a(href="/logout") Log Out
+                            a(href="/users/logout") Log Out
                         li 
                             a(href="/my-profile") #{locals.loggedInUser.name}'s Profile
                     else
