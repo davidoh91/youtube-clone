@@ -1,4 +1,5 @@
 import Video from "../models/Video";
+import { protectorMiddleware } from "../middlewares";
 
 // using async & await in function
 export const home = async(req, res) => {

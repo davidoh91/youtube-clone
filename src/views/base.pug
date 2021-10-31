@@ -12,10 +12,12 @@ html(lang="ko")
                     li
                         a(href="/") Home
                     if locals.loggedIn
+                        li
+                            a(href="/videos/upload") Upload Video
                         li 
-                            a(href="/users/logout") Log Out
+                            a(href="/users/edit") Edit Profile
                         li 
-                            a(href="/my-profile") #{locals.loggedInUser.name}'s Profile
+                            a(href="/users/logout")  Log Out
                     else
                         li 
                             a(href="/join") Join 
@@ -23,8 +25,6 @@ html(lang="ko")
                             a(href="/login") Login
                     li
                         a(href="/search") Search 
-                    li 
-                        a(href="/videos/upload") Upload Video
         main
             //insert a block (a window to place contents after extending base.pug)
             block content
