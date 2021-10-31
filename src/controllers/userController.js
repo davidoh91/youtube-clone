@@ -162,6 +162,13 @@ export const postEdit = async (req, res) => {
         username,
         location,
     });
+    req.session.user = {
+        ...req.session.user,
+        name,
+        email,
+        username,
+        location,
+    };
     return res.render("edit-profile");
 };
   

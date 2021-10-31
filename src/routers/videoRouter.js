@@ -5,6 +5,7 @@ So, use express.Router() to 'hide' the parent directories and route specific req
 
 import express from "express";
 import { watch, getUpload, postUpload, getEdit, postEdit, deleteVideo } from "../controllers/videoController";
+import { protectorMiddleware } from "../middlewares";
 
 const videoRouter = express.Router();
 

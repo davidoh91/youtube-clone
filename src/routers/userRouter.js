@@ -5,7 +5,8 @@ So, use express.Router() to 'hide' the parent directories and route specific req
 */
 
 import express from "express";
-import { logout, edit, remove, see, startGithubLogin, finishGithubLogin } from "../controllers/userController";
+import { logout, getEdit, postEdit, see, startGithubLogin, finishGithubLogin } from "../controllers/userController";
+import { protectorMiddleware, publicOnlyMiddleware } from "../middlewares";
 
 const userRouter = express.Router();
 
