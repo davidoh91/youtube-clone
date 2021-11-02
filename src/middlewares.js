@@ -1,6 +1,8 @@
 // node.js's express engine uses app -> 
 // when this app sends the event to a browser, 
 // it holds parameters in "locals" section to share with view templates
+import multer from "multer";
+
 export const localsMiddleware = (req, res, next) => {
     console.log("Session Info: ", req.session.id);
     res.locals.loggedIn = Boolean(req.session.loggedIn);
@@ -9,7 +11,6 @@ export const localsMiddleware = (req, res, next) => {
     console.log("Session's locals info: ", res.locals);
     next();
 }
-
 export const protectorMiddleware = (req, res, next) => {
     if (req.session.loggedIn) {
         return next();
@@ -17,7 +18,6 @@ export const protectorMiddleware = (req, res, next) => {
         return res.redirect("/login");
     }
 };
-
 export const publicOnlyMiddleware = (req, res, next) => {
     if (!req.session.loggedIn) {
         return next();
@@ -25,4 +25,4 @@ export const publicOnlyMiddleware = (req, res, next) => {
         return res.redirect("/");
     }
 };
-
+export const uploadFiles = multer({ dest: "uploads/" });
