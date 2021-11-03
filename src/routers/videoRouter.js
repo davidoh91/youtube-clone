@@ -5,7 +5,7 @@ So, use express.Router() to 'hide' the parent directories and route specific req
 
 import express from "express";
 import { watch, getUpload, postUpload, getEdit, postEdit, deleteVideo } from "../controllers/videoController";
-import { protectorMiddleware } from "../middlewares";
+import { protectorMiddleware, fileUpload } from "../middlewares";
 
 const videoRouter = express.Router();
 
@@ -36,6 +36,6 @@ videoRouter
   .route("/upload")
   .all(protectorMiddleware)
   .get(getUpload)
-  .post(postUpload);
+  .post(fileUpload.single("video"), postUpload);
 
 export default videoRouter;
