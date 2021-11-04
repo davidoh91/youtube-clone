@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Video from "../models/Video"
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 
@@ -204,4 +205,15 @@ export const postChangePassword = async (req, res) => {
     await user.save();
     return res.redirect("/users/logout");
 };
-export const see = (req, res) => res.send("This is See User");
+export const see = async (req, res) => {
+    console.log("This is the request for /users/:id", req);
+    const { id } = req.params;
+    const user = await User.findById({ _id:id }).populate("videos");
+    if (!user) {
+        return res.status(404).render("404", { pageTitle: "User not found." });
+    }
+    return res.render("users/profile", {
+        pageTitle: `${user.name}'s Profile`,
+        user,
+    });
+};
