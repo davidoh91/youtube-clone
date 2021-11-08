@@ -1,5 +1,3 @@
-const hello = async () => {
-    alert("hi this is javascript working");
-    const x = await fetch("");
-};
-hello();
+import "../scss/styles.scss"
+
+console.log("Hi, this is javascript, processed by webpack")
