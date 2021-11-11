@@ -5,10 +5,9 @@ import User from "../models/User";
 export const home = async(req, res) => {
     try {
         console.log("db video search start");
-        const videos = await Video.find({}).sort({createdAt: "desc"});
-        console.log("the videos from MongoDB: ", videos);
-        console.log("db video search finished");
-        console.log(videos)
+        const videos = await Video.find({})
+            .sort({ createdAt: "desc" })
+            .populate("owner");
         return res.render("home", { pageTitle: "Home", videos: videos });
     } catch {
         return res.render("Server Error");
@@ -101,7 +100,6 @@ export const deleteVideo = async (req, res) => {
     return res.redirect("/");
 };
 export const search = async (req, res) => {
-    console.log(req.query)
     const keyword = req.query.keyword;
     let videos = [];
     if (keyword) {
@@ -109,8 +107,7 @@ export const search = async (req, res) => {
             title: {
                 $regex: new RegExp(`${keyword}$`, "i"),
             }
-        });
+        }).populate("owner");
     }
-    console.log(videos);
     return res.render("search", { pageTitle: "Search", videos });
 };
