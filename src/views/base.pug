@@ -1,15 +1,11 @@
-// on other templates, extend this base template file
 html(lang="ko")
     head
-        // the pageTitle parameter is received from Controllers
         title #{pageTitle} | #{locals.siteName}
-        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
         link(rel="stylesheet" href="/static/css/styles.css")
     body
         include partials/header
         main
-            //insert a block (a window to place contents after extending base.pug)
             block content
-    //simply import footer.pug from partials directory
-    include partials/footer.pug
+        include partials/footer.pug
     script(src="/static/js/main.js")
