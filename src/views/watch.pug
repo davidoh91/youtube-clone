@@ -2,6 +2,8 @@ extends base.pug
 
 block content
     video(src="/" + video.fileUrl, controls)
+    
+//
     div
         p=video.description
         small=video.createdAt 
@@ -12,4 +14,7 @@ block content
     if String(video.owner._id) === String(loggedInUser._id)
         a(href=`${video.id}/edit`) Edit Video &rarr;
         br
-        a(href=`${video.id}/delete`) Delete Video &rarr; 
+        a(href=`${video.id}/delete`) Delete Video &rarr;
+
+block scripts 
+    script(src="/static/js/videoPlayer.js")
