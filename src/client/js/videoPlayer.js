@@ -6,7 +6,7 @@ const volumeRange = document.getElementById("volume");
 console.log("This javascript file adds logic to watch view\n", play, mute, time, volume);
 
 let volumeValue = 0.5;
-video.volume = volume;
+video.volume = volumeValue;
 
 const handlePlayClick = (e) => {
     if (video.paused) {
@@ -21,15 +21,14 @@ const handlePlayClick = (e) => {
 const handlePause = () => (playBtn.innerText = "Play");
 const handlePlay = () => (playBtn.innerText = "Pause");
 
-const handleMute = (e) => {
+const handleMuteClick = (e) => {
     if (video.muted) {
         video.muted = false;
-        muteBtn.innerText = "Mute";
     } else {
         video.muted = true;
     }
     muteBtn.innerText = video.muted ? "Unmute" : "Mute";
-    volumeRange.value = video.muted ? 0 : 0.5;
+    volumeRange.value = video.muted ? 0 : volumeValue;
 };
 
 const handleVolumeChange = (event) => {
@@ -43,5 +42,5 @@ const handleVolumeChange = (event) => {
 }
 
 playBtn.addEventListener("click", handlePlayClick);
-muteBtn.addEventListener("click", handleMute);
+muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
