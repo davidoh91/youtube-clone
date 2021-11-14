@@ -5,6 +5,7 @@ const time = document.getElementById("time");
 const volumeRange = document.getElementById("volume");
 const currentTime = document.getElementById("currentTime")
 const totalTime = document.getElementById("totalTime")
+const timeline = document.getElementById("timeline");
 console.log("This javascript file adds logic to watch view\n", video, play, mute, time, volumeRange, currentTime, totalTime);
 
 let volumeValue = 0.5;
@@ -26,7 +27,7 @@ const handleMuteClick = (e) => {
         video.muted = false;
     } else {
         video.muted = true;
-    }
+    };
     muteBtn.innerText = video.muted ? "Unmute" : "Mute";
     volumeRange.value = video.muted ? 0 : volumeValue;
 };
@@ -35,22 +36,29 @@ const handleVolumeChange = (event) => {
     if(video.muted) {
         video.volume = false;
         muteBtn.innerText = "Mute";
-    }
+    };
     volumnValue = value;
     video.volume = value;
-}
+};
 const formatTime = (time) => {
     new Date(time * 1000).toISOString().substr(11, 8);
-}
+};
 const handleLoadedMetadata = (event) => {
     totalTime.innerText = formatTime(Math.floor(video.duration));
-}
+    timeline.max = Math.floor(video.duration);
+};
 const handleTimeUpdate = (event) => {
     currentTime.innerText = formatTime(Math.floor(video.currentTime));
-}
+    timeline.value = Math.floor(video.currentTime);
+};
+const handleTimelineChange = (event) => {
+    const { target: { value } } = event;
+    video.currentTime = value;
+};
 
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("loadedMetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
+timeline.addEventListener("input", handleTimelineChange);
