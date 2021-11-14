@@ -3,9 +3,11 @@ const playBtn = document.getElementById("play");
 const muteBtn = document.getElementById("mute");
 const time = document.getElementById("time");
 const volumeRange = document.getElementById("volume");
-const currentTime = document.getElementById("currentTime")
-const totalTime = document.getElementById("totalTime")
+const currentTime = document.getElementById("currentTime");
+const totalTime = document.getElementById("totalTime");
 const timeline = document.getElementById("timeline");
+const fullScreenBtn = document.getElementById("fullScreenBtn")
+const videoContainer = document.getElementById("videoContainer");
 console.log("This javascript file adds logic to watch view\n", video, play, mute, time, volumeRange, currentTime, totalTime);
 
 let volumeValue = 0.5;
@@ -55,6 +57,16 @@ const handleTimelineChange = (event) => {
     const { target: { value } } = event;
     video.currentTime = value;
 };
+const handleFullscreen = () => {
+    const fullscreen = document.fullscreenElement;
+    if (fullscreen) {
+        document.exitFullscreen();
+        fullScreenBtn.innerText = "Enter Full Screen";
+    } else {
+        videoContainer.requestFullscreen();
+        fullScreenBtn.innerText = "Exit Full Screen";
+    };
+};
 
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
@@ -62,3 +74,4 @@ volumeRange.addEventListener("input", handleVolumeChange);
 video.addEventListener("loadedMetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 timeline.addEventListener("input", handleTimelineChange);
+fullScreenBtn.addEventListener("click", handleFullscreen);
