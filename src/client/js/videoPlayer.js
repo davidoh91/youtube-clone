@@ -8,7 +8,7 @@ const volumeRange = document.getElementById("volume");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const timeline = document.getElementById("timeline");
-const fullScreenBtn = document.getElementById("fullScreenBtn");
+const fullScreenBtn = document.getElementById("fullScreen");
 const fullScreeenIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
@@ -26,7 +26,7 @@ const handlePlayClick = (e) => {
     } else {
         video.pause();
     }
-    playBtn.classList = video.paused ? "fas fa-play": "fas fa-pause";
+    playBtnIcon.classList = video.paused ? "fas fa-play": "fas fa-pause";
 };
 const handlePause = () => (playBtn.innerText = "Play");
 const handlePlay = () => (playBtn.innerText = "Pause");
@@ -64,10 +64,10 @@ const handleFullscreen = () => {
     const fullscreen = document.fullscreenElement;
     if (fullscreen) {
         document.exitFullscreen();
-        fullScreenBtn.innerText = "fas fa-expand";
+        fullScreenIcon.classList = "fas fa-expand";
     } else {
         videoContainer.requestFullscreen();
-        fullScreenBtn.innerText = "fas fa-compress";
+        fullScreenIcon.classList = "fas fa-compress";
     };
 };
 const hideControls = () => videoControls.classList.remove("showing");
