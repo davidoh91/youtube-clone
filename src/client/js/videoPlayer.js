@@ -94,7 +94,14 @@ const handleEnded = () => {
     console.log("videoContainer's dateset - id: ", id);
     fetch(`/api/videos/${id}/view`, { method: "POST" });
 };
+const handlePlayPress = (event) => {
+    const { code } = event;
+    if (code === "Space") {
+        handlePlayClick();
+    };
+};
 
+document.addEventListener("keydown", handlePlayPress);
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
