@@ -99,4 +99,4 @@ module.exports = {
 
 then.. run < npm run assets > to apply the webpack and its css/javascript loaders to the source file
 
-
+3. npm i regenerator-runtime        << allows using async await in frontend javascript

@@ -100,7 +100,6 @@ const handlePlayPress = (event) => {
         handlePlayClick();
     };
 };
-
 document.addEventListener("keydown", handlePlayPress);
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);

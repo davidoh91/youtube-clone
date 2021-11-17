@@ -111,7 +111,6 @@ export const search = async (req, res) => {
     }
     return res.render("search", { pageTitle: "Search", videos });
 };
-
 export const registerView = async (req, res) => {
     console.log("******************", req.params.id);
     const { id } = req.params;
