@@ -100,3 +100,8 @@ module.exports = {
 then.. run < npm run assets > to apply the webpack and its css/javascript loaders to the source file
 
 3. npm i regenerator-runtime        << allows using async await in frontend javascript
+
+4. download FFMPEG (and utilize Webassembly) aka. "ffmpeg.wasm"
+to write really fast frontend codes, which consume user device's computing power
+what does this do? this will turn webm recorded file into mp4 format or however format you want
+-> run < npm install @ffmpeg/ffmpeg @ffmpeg/core >

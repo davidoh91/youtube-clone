@@ -1,4 +1,5 @@
 console.log("this is recorder.js");
+import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const startBtn = document.getElementById("startBtn");
 const video = document.getElementById("preview");
 
@@ -6,9 +7,20 @@ let stream;
 let recorder;
 let videoFile;
 
-const handleDownload = () => {
+const handleDownload = async () => {
+    const ffmpeg = createFFmpeg({ log: true });
+    await ffmpeg.load();
+
+    ffmpeg.FS("writeFile", "recording.webm", await fetchFile(videoFile));
+    await ffmpeg.run('-i', 'recording.webm', '-r', '60',  'output.mp4');
+
+    const mp4File = ffmpeg.FS("readFile", "output.mp4");
+    const mp4Blob = new Blob([mp4File.buffer], { type: "video.mp4"});
+    const mp4Url = URL.createObjectURL(mp4Blob);
+
     const a = document.createElement("a");
-    a.download = "MyRecording.webm";
+    a.href = mp4Url;
+    a.download = "MyRecording.mp4";
     document.body.appendChild(a);
     a.click();
 };
@@ -26,7 +38,7 @@ const handleStart = () => {
     startBtn.addEventListener("click", handleStop);
     const recorder = new MediaRecorder(stream);
     recorder.ondataavailable = (event) => {
-        const videoFile = URL.createObjectURL(event.data);
+        videoFile = URL.createObjectURL(event.data);
         video.srcObject = null;
         video.src = videoFile;
         video.loop = true;
