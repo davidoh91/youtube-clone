@@ -49,6 +49,12 @@ Pug helps create view (html templates)
 +npm i multer
 Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
 
++npm i express-flash
+This is for comment section
+express-flash is a middleware that allows users to leave messages to templates, and these
+message can be used by calling req.flash() in controllers
+and will be tied to users' sessions
+
 -------------------------------------------------------------------------------------------------------------
 # Frontend related... 
 
