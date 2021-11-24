@@ -30,6 +30,7 @@ app.set('views', process.cwd() + '/src/views'); // set the correct path for view
 
 app.use(logger);
 app.use(express.urlencoded({ extended: true})); // this middleware, express.urlencoded(), enables us to use the POST method when sending form
+app.use(express.json()); // this middleware enables us to parse json data in req.body where the { "Content-Type": "application/json" }
 app.use(
     session({
         secret: process.env.COOKIE_SECRET,
