@@ -142,7 +142,7 @@ export const createComment = async (req, res) => {
         return res.sendStatus(404);
     }
     const comment = await Comment.create({
-        text,
+        text: text,
         owner: user._id,
         video: id,
     });
