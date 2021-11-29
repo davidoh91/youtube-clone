@@ -111,3 +111,30 @@ then.. run < npm run assets > to apply the webpack and its css/javascript loader
 to write really fast frontend codes, which consume user device's computing power
 what does this do? this will turn webm recorded file into mp4 format or however format you want
 -> run < npm install @ffmpeg/ffmpeg @ffmpeg/core >
+
+-------------------------------------------------------------------------------------------------------------
+# Deployment Related: 
+# Build the backend / Build the Frontend / Deploy to Heroku / MongoDB Atlas / Environment Variables / AWS S3 / Production Environment
+
+npm install --save-dev @babel/core @babel/cli
+
+Build the backend >> add "build:server" and "start" to build and start the app
+on package.json...
+  "scripts": {
+    "start": "node build/init.js",
+    "build:server": "babel src -d build",
+    "dev:server": "nodemon --exec babel-node src/init.js",
+    "dev:assets": "webpack --config webpack.config.js"
+  },
+
+Build the frontend >> add "build:assets": "webpack --mode=production" and "build": "npm run build:server && npm run build:assets"
+on package.json...
+  "scripts": {
+    "start": "node build/init.js",
+    "build": "npm run build:server && npm run build:assets",
+    "build:server": "babel src -d build",
+    "build:assets": "webpack --mode=production",
+    "dev:server": "nodemon --exec babel-node src/init.js",
+    "dev:assets": "webpack --mode=development"
+  },
+
