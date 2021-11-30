@@ -139,7 +139,7 @@ Build the frontend >> add "build:assets": "webpack --mode=production" and "build
   },
 
 Deploy to Heroku
-    edit out build commands from package.json...
+    prebuild the frontend assets and edit out frontend build commands from package.json...
   "scripts": {
   "start": "node build/init.js",
   "build:server": "babel src -d build",
