@@ -139,12 +139,8 @@ Build the frontend >> add "build:assets": "webpack --mode=production" and "build
   },
 
 Deploy to Heroku
-    prebuild the frontend assets and edit out frontend build commands from package.json...
-  "scripts": {
-  "start": "node build/init.js",
-  "dev:server": "nodemon --exec babel-node src/init.js",
-  "dev:assets": "webpack --mode=development"
-},
+  on webpack.config.js... remove option: <watch: true>
+    ^refer to link: https://stackoverflow.com/questions/66913761/trouble-getting-heroku-app-to-run-but-i-can-get-it-to-run-locally
   install Heroku CLI from...
     https://devcenter.heroku.com/articles/heroku-cli#download-and-install
   or
