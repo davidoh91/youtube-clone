@@ -145,12 +145,16 @@ Deploy to Heroku
   "dev:server": "nodemon --exec babel-node src/init.js",
   "dev:assets": "webpack --mode=development"
 },
-install Heroku CLI from...
+  install Heroku CLI from...
     https://devcenter.heroku.com/articles/heroku-cli#download-and-install
-or
-    simply run command on vscode >> npm i -g heroku
-refer to this link:
-https://dashboard.heroku.com/apps/<name of your heroku app>/deploy/heroku-git
+  or
+  simply run command on vscode >> npm i -g heroku
+    refer to this link:
+    https://dashboard.heroku.com/apps/<name of your heroku app>/deploy/heroku-git
+Also add the current node.js version to package.json as below..
+  "engines": {
+    "node": "14.x"
+  },
 heroku login
 cd <the repository of your app>
 heroku git:remote -a <name of heroku git repository>  
