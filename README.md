@@ -139,6 +139,12 @@ Build the frontend >> add "build:assets": "webpack --mode=production" and "build
   },
 
 Deploy to Heroku
+    edit out build commands from package.json...
+  "scripts": {
+  "start": "node build/init.js",
+  "dev:server": "nodemon --exec babel-node src/init.js",
+  "dev:assets": "webpack --mode=development"
+},
 install Heroku CLI from...
     https://devcenter.heroku.com/articles/heroku-cli#download-and-install
 or
