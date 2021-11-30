@@ -142,6 +142,7 @@ Deploy to Heroku
     edit out build commands from package.json...
   "scripts": {
   "start": "node build/init.js",
+  "build:server": "babel src -d build",
   "dev:server": "nodemon --exec babel-node src/init.js",
   "dev:assets": "webpack --mode=development"
 },
