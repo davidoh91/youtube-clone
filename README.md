@@ -119,7 +119,7 @@ what does this do? this will turn webm recorded file into mp4 format or however 
 npm install --save-dev @babel/core @babel/cli
 
 Build the backend >> add "build:server" and "start" to build and start the app
-on package.json...
+    on package.json...
   "scripts": {
     "start": "node build/init.js",
     "build:server": "babel src -d build",
@@ -128,7 +128,7 @@ on package.json...
   },
 
 Build the frontend >> add "build:assets": "webpack --mode=production" and "build": "npm run build:server && npm run build:assets"
-on package.json...
+    on package.json...
   "scripts": {
     "start": "node build/init.js",
     "build": "npm run build:server && npm run build:assets",
@@ -137,4 +137,19 @@ on package.json...
     "dev:server": "nodemon --exec babel-node src/init.js",
     "dev:assets": "webpack --mode=development"
   },
+
+Deploy to Heroku
+install Heroku CLI from...
+    https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+or
+    simply run command on vscode >> npm i -g heroku
+refer to this link:
+https://dashboard.heroku.com/apps/<name of your heroku app>/deploy/heroku-git
+heroku login
+cd <the repository of your app>
+heroku git:remote -a <name of heroku git repository>
+git push origin master
+
+dd
+
 
