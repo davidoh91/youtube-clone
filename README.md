@@ -147,8 +147,8 @@ refer to this link:
 https://dashboard.heroku.com/apps/<name of your heroku app>/deploy/heroku-git
 heroku login
 cd <the repository of your app>
-heroku git:remote -a <name of heroku git repository>
-git push origin master
+heroku git:remote -a <name of heroku git repository>  
+  ^ first, run.. git commit -m "<message here>", git push origin main && git push heroku main 
+git add .
 git push heroku <main or master...depending on your current branch.. check by git branch>
-
-
+heroku logs --tail  << use this to check out 
