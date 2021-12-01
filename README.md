@@ -170,5 +170,5 @@ MongoDB Atlas
   DB_URL        > instead of http://localhost:27017, use the db url from 
                   https://cloud.mongodb.com/v2/61a63fee41671f4109c9e3e1#clusters/connect?clusterId=Cluster0
   COOKIE_SECRET > insert random number and special characters
-  GH_Client     > refer to github settings
-  GH_Secret     > refer to github settings
+  GH_CLIENT     > refer to github settings
+  GH_SECRET     > refer to github settings
