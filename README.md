@@ -118,6 +118,7 @@ what does this do? this will turn webm recorded file into mp4 format or however 
 
 npm install --save-dev @babel/core @babel/cli
 
+
 Build the backend >> add "build:server" and "start" to build and start the app
     on package.json...
   "scripts": {
@@ -126,6 +127,7 @@ Build the backend >> add "build:server" and "start" to build and start the app
     "dev:server": "nodemon --exec babel-node src/init.js",
     "dev:assets": "webpack --config webpack.config.js"
   },
+
 
 Build the frontend >> add "build:assets": "webpack --mode=production" and "build": "npm run build:server && npm run build:assets"
     on package.json...
@@ -137,6 +139,7 @@ Build the frontend >> add "build:assets": "webpack --mode=production" and "build
     "dev:server": "nodemon --exec babel-node src/init.js",
     "dev:assets": "webpack --mode=development"
   },
+
 
 Deploy to Heroku
   on webpack.config.js... remove option: <watch: true>
