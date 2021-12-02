@@ -191,4 +191,9 @@ Environment Variables
       find authorizatoin callback URL from... https://github.com/settings/applications
       change <localhost:30000> -> into heroku app domain which looks like <https://heroku-youtube-clone.herokuapp.com>
 
+Deploy command:
+  git add .;git commit -m "deployment 21.12.02";git push origin main;git push heroku main
+    ^ either use this or...
+    turn on "Automatic Deploys" option on Heroku
+
 
