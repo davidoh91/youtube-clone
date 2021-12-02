@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-// mongodb uses the specific port number, 27017
+// for test purposes, use localhost mongodb takes the DB_URL from .env file, 
+// but for build & deployment, process.env.DB_URL must be set on MongoDB Atlas Website
 mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true, 
     useUnifiedTopology: true,

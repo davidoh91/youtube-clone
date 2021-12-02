@@ -164,11 +164,12 @@ heroku logs --tail  << use this to check out
 
 
 MongoDB Atlas
-  On localhost server, you use .env file to store credentials, but
-  on deployed server using Heroku engine, these credentials are saved in "config vars"
-  so.. replace these credentials in .env file:
-  DB_URL        > instead of http://localhost:27017, use the db url from 
-                  https://cloud.mongodb.com/v2/61a63fee41671f4109c9e3e1#clusters/connect?clusterId=Cluster0
-  COOKIE_SECRET > insert random number and special characters
-  GH_CLIENT     > refer to github settings
-  GH_SECRET     > refer to github settings
+MongoDB Atlas URL: refer to https://cloud.mongodb.com/ and find DB
+  Replace the values in .env file:
+    Change the DB URL from (1) localhost to (2) MongoDB Atlas
+      (1) DB_URL=mongodb://127.0.0.1:27017/youtube
+      (2) mongodb+srv://davidoh:<password>@cluster0.zgra0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+      how? go to heroku's config vars option -> insert new DB_URL
+    On Heroku's config vars, do the same for COOKIE_SECRET
+
+
