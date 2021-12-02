@@ -1,5 +1,5 @@
 import User from "../models/User";
-import Video from "../models/Video"
+import Video from "../models/Video";
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 
@@ -66,7 +66,6 @@ export const postLogin = async (req, res) => {
     console.log("Log the user in");
     res.redirect("/");
 };
-
 export const startGithubLogin = (req, res) => {
     const baseUrl = "https://github.com/login/oauth/authorize";
     const config = {
