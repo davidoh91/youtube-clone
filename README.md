@@ -169,7 +169,8 @@ MongoDB Atlas URL: refer to https://cloud.mongodb.com/ and find DB URL:
   mongodb+srv://davidoh:<password>@cluster0.zgra0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 
-Replace the values in .env file
+Environment Variables
+  Replace the values in .env file
   On Heroku's Config Vars, change the following:
     DB URL from (1) localhost to (2) MongoDB Atlas
       (1) DB_URL=mongodb://127.0.0.1:27017/youtube
@@ -181,5 +182,12 @@ Replace the values in .env file
     from... const PORT = 30000;
     to  ... const PORT = process.env.PORT || 30000;
     this is because by default, MongoDB Atlas gives your application the PORT to listen to
+  Change GitHub Login Info:
+    Homepage URL:
+      from  ... localhost:30000
+      to    ... https://heroku-youtube-clone.herokuapp.com/
+    Authorization callback URL for Github:
+      find authorizatoin callback URL from... https://github.com/settings/applications
+      change <localhost:30000> -> into heroku app domain which looks like <https://heroku-youtube-clone.herokuapp.com>
 
 
