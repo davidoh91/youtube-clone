@@ -7,8 +7,8 @@ import "./models/Comment";
 import app from "./server";
 
 const PORT = process.env.PORT || 30000;
-// const STRING = `"server listening on http://localhost:${PORT}"`;
-const handleListening = () => console.log(STRING);
-
+const handleListening = () => {
+    console.log(`Express server listening on port ${this.address().port}`);
+};
 app.listen(PORT, handleListening);
 
