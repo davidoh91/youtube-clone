@@ -176,8 +176,9 @@ Environment Variables
       (1) DB_URL=mongodb://127.0.0.1:27017/youtube
       (2) mongodb+srv://davidoh:<password>@cluster0.zgra0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
       how? go to heroku's config vars option -> insert new DB_URL
-    COOKIE_SECRET
-    GITHUB_CLIENT, GITHUB_SECRET
+    COOKIE_SECRET     <<  randome cookie value to make sessions
+    GH_CLIENT         <<  Github client
+    GH_SECRET         <<  Github secret
   **Also** change the listening PORT on init.js:
     from... const PORT = 30000;
     to  ... const PORT = process.env.PORT || 30000;
