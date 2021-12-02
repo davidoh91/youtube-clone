@@ -8,7 +8,7 @@ import app from "./server";
 
 const PORT = process.env.PORT || 30000;
 const handleListening = () => {
-    console.log(`Express server listening on port ${this.address().port}`);
+    console.log(`Express server listening on port ${PORT}`);
 };
 app.listen(PORT, handleListening);
 
