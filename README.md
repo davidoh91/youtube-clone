@@ -190,10 +190,12 @@ Environment Variables
     Authorization callback URL for Github:
       find authorizatoin callback URL from... https://github.com/settings/applications
       change <localhost:30000> -> into heroku app domain which looks like <https://heroku-youtube-clone.herokuapp.com>
+  AWS User info (the user with programmatic access)
+    get these two and update to heroku config var:
+      AWS_ID, AWS_SECRET
 
 Deploy command:
   git add .;git commit -m "deployment 21.12.02";git push origin main;git push heroku main
     ^ either use this or...
     turn on "Automatic Deploys" option on Heroku
-
 
