@@ -2,7 +2,20 @@
 // when this app sends the event to a browser, 
 // it holds parameters in "locals" section to share with view templates
 import multer from "multer";
+import multerS3 from "multer-s3";
+import aws from "aws-sdk";
 
+const s3 = aws.S3({
+    credentials: {
+        accesskeyId: process.env.AWS_ID,
+        secretAccessKey: process.env.AWS_SECRET
+    }
+});
+const multerUploader = multerS3({
+    s3: s3,
+    bucket: 'test0808',
+    acl: 'public-read'
+});
 export const localsMiddleware = (req, res, next) => {
     console.log("Session Info: ", req.session.id);
     res.locals.loggedIn = Boolean(req.session.loggedIn);
@@ -10,7 +23,7 @@ export const localsMiddleware = (req, res, next) => {
     res.locals.loggedInUser = req.session.user || {};
     console.log("Session's locals info: ", res.locals);
     next();
-}
+};
 export const protectorMiddleware = (req, res, next) => {
     if (req.session.loggedIn) {
         return next();
@@ -32,18 +45,21 @@ export const avatarUpload = multer({
     limits: {
         fileSize: 10000000,
     },
+    storage: multerUploader,
 });
 export const fileUpload = multer({ 
     dest: "uploads/videos",
     limits: {
         fileSize: 10000000,
-    }
+    },
+    storage: multerUploader,
 });
 export const videoUpload = multer({
     dest: "uploads/videos/",
     limits: {
         fileSize: 100000000,
-    }
+    },
+    storage: multerUploader,
 });
 
 // change

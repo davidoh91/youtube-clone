@@ -199,3 +199,13 @@ Deploy command:
     ^ either use this or...
     turn on "Automatic Deploys" option on Heroku
 
+AWS S3:
+  For the purpose of uploading videos and images, replace the localhost storage with AWS S3, so.. do the following:
+      install multer-s3  /  aws sdk package:
+          npm install --save multer-s3
+          npm install aws-sdk
+      on "middlewares.js", import & implement multer-s3 and aws-sdk
+      
+      Get AWS User info (the user with programmatic access)
+          get these two and update to heroku config var:
+          AWS_ID, AWS_SECRET
