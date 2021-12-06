@@ -3,19 +3,19 @@
 // it holds parameters in "locals" section to share with view templates
 import multer from "multer";
 import multerS3 from "multer-s3";
-import aws, { Rekognition } from "aws-sdk";
+import aws from "aws-sdk";
 
 const isHeroku = process.env.NODE_ENV === "production";
 
-// aws.config.update({
-//     accessKeyId: process.env.AWS_ID,
-//     secretAccessKey: process.env.AWS_SECRET,
-//     region: "ap-northeast-2",
-// });
-const s3 = new aws.S3({
-    accesskeyId: process.env.AWS_ID,
-    secretAccessKey: process.env.AWS_SECRET
+aws.config.update({
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_SECRET,
+    region: "ap-northeast-2",
 });
+// const s3 = new aws.S3({
+//     accesskeyId: process.env.AWS_ID,
+//     secretAccessKey: process.env.AWS_SECRET
+// });
 const s3ImageUploader = multerS3({
     s3: new aws.S3,
     bucket: 'test-0808/youtube-clone/images',
