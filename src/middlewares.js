@@ -59,5 +59,5 @@ export const videoUpload = multer({
     limits: {
         fileSize: 100000000,
     },
-    storage: s3VideoUploader ? s3VideoUploader : undefined,
+    storage: isHeroku ? s3VideoUploader : undefined,
 });
