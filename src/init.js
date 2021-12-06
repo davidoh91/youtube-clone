@@ -11,4 +11,3 @@ const handleListening = () => {
     console.log(`Express server listening on port ${PORT}`);
 };
 app.listen(PORT, handleListening);
-
