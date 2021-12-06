@@ -4,15 +4,15 @@ import User from "../models/User";
 
 // using async & await in function
 export const home = async(req, res) => {
-    try {
-        console.log("db video search start");
-        const videos = await Video.find({})
-            .sort({ createdAt: "desc" })
-            .populate("owner");
+    console.log("db video search start");
+    const videos = await Video.find({})
+        .sort({ createdAt: "desc" })
+        .populate("owner");
+    if (videos) {
         return res.render("home", { pageTitle: "Home", videos: videos });
-    } catch {
-        return res.render("Server Error");
-    };
+    } else {
+        return res.render("home", { pageTitle: "Home"});
+    }
 };
 export const watch = async(req, res) => {
     const id = req.params.id;
