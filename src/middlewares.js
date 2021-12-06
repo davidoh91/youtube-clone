@@ -6,7 +6,7 @@ import multerS3 from "multer-s3";
 import aws from "aws-sdk";
 
 const isHeroku = process.env.NODE_ENV === "production";
-const s3 = aws.S3({
+const s3 = new aws.S3({
     credentials: {
         accesskeyId: process.env.AWS_ID,
         secretAccessKey: process.env.AWS_SECRET
