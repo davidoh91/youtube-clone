@@ -9,6 +9,7 @@ export const home = async(req, res) => {
         .sort({ createdAt: "desc" })
         .populate("owner");
     if (videos) {
+        console.log(`*************check the videos!!!!\n${videos}`);
         return res.render("home", { pageTitle: "Home", videos: videos });
     } else {
         return res.render("home", { pageTitle: "Home"});
@@ -63,10 +64,13 @@ export const postEdit = async (req, res) => {
 export const getUpload = (req, res) => {
     return res.render("upload", { pageTitle: "Upload Video" });
 };
+
+const isHeroku = process.env.NODE_ENV === "production";
 export const postUpload = async (req, res) => {
     const {
         user: { _id },
     } = req.session;
+    console.log(`!!!!!!!!!!!!!!!checking req.params!!!!!!!!!!\n ${req.params}`)
     const { video, thumb } = req.files;
     console.log("checking video file and thumbnail sent via router..", video, thumb);
     const { title, description, hashtags } = req.body;
@@ -75,7 +79,7 @@ export const postUpload = async (req, res) => {
             title,
             description,
             fileUrl: isHeroku ? video[0].location : video[0].path,
-            thumbUrl: isHeroku ? thumb[0].location : video[0].path,
+            thumbUrl: isHeroku ? thumb[0].location : thumb[0].path,
             owner: _id,
             hashtags: Video.formatHashtags(hashtags),
         });
